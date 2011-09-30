@@ -12,15 +12,24 @@ class Language(models.Model):
     geolat = models.FloatField('location lat coordinate', default=0)
     geolon = models.FloatField('location lon coordinate', default=0)
     resources = models.TextField('language resources')
+    def __unicode__(self):
+        return self.language
+    
 
 class Language_version(models.Model):
     language = models.ForeignKey(Language, related_name='Version of')
     date = models.DateTimeField('revised date', default=datetime.now)
     notes = models.TextField('version notes')
+    def __unicode__(self):
+        return self.language.language + self.date
+    
 
 class Word(models.Model):
     word = models.CharField('actual word', max_length=200)
     language = models.ForeignKey(Language, related_name='language in')
+    def __unicode__(self):
+        return self.word
+    
 
 class Definition(models.Model):
     word = models.ForeignKey(Word, related_name='definition of')
@@ -31,6 +40,9 @@ class Definition(models.Model):
     example = models.TextField('example usage', blank=True)
     annotations = models.TextField('grammatical notes')
     sound_file = models.CharField('sound file', max_length=200, blank=True)
+    def __unicode__(self):
+        return self.word.word + " definition"
+    
 
 class Comment(models.Model):
     word = models.ForeignKey(Word, related_name='comment on')
@@ -38,4 +50,7 @@ class Comment(models.Model):
     date = models.DateTimeField('published time', default=datetime.now)
     comment = models.TextField('actual comment')
     approved = models.BooleanField('has been approved',default=False)
+    def __unicode__(self):
+        return "comment on " + self.word + " by " + self.author
+    
 
