@@ -1,4 +1,4 @@
-from polls.models import * 
+from glossy_app.models import * 
 from django.contrib import admin
 
 admin.site.register(Language)

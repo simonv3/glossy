@@ -1,1 +1,9 @@
 Hello, World
+
+<form action="" method="post">{% csrf_token %}
+{{ searchForm.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+{{ wordsDict }}
+
