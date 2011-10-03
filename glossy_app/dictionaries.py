@@ -11,8 +11,9 @@ def search_abdv_language(language, query):
     ABDVlangs = range(0,5) #these languages are the abdv languages
     #print ABDVlangs
     if int(language) in ABDVlangs:
-        params = urllib.urlencode({'language': 1, 'type': 'xml', 'section':
+        params = urllib.urlencode({'language': language, 'type': 'xml', 'section':
             'austronesian'})
+        print params
         f = urllib.urlopen("http://language.psy.auckland.ac.nz/utils/save/index.php?%s" % params)
         soup = BeautifulStoneSoup(f.read())
         recordsList = []
