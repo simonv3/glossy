@@ -1,7 +1,6 @@
 from BeautifulSoup import BeautifulStoneSoup
 import urllib
 
-languageDict = {"Bali":1,"Banggai":2,"Banggi":3,"Banggi":4}
 
 def fetch_abdv_languages():
     return "hello"

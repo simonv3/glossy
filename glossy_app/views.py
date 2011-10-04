@@ -3,17 +3,28 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from glossy_app.dictionaries import *
-from glossy_app.forms import SearchForm
+from glossy_app.forms import SearchForm, LanguageForm
 
 def main(request):
     #search_abdv_language('Bali')
+    languageForm = LanguageForm(request.POST or None)
     searchForm = SearchForm(request.POST or None)
     if request.method == "POST":
-        if searchForm.is_valid():
-            sfCD = searchForm.cleaned_data
-            wordsDict = []
-            abdv_results = search_abdv_language(sfCD['language'],sfCD['query'])
-            print abdv_results
-            wordsDict.extend(abdv_results)
-            print wordsDict
+        if 'word' in request.POST:
+            if searchForm.is_valid():
+                sfCD = searchForm.cleaned_data
+                wordsDict = []
+                abdv_results = search_abdv_language(sfCD['language'],sfCD['query'])
+                wordsDict.extend(abdv_results)
+                print wordsDict
+        elif 'language' in request.POST:
+            print "searching languages"
+            if languageForm.is_valid():
+                lfCD = languageForm.cleaned_data
+
     return render_to_response("main/main_page.html", locals(),context_instance=RequestContext(request))
+
+def language(request, languagename):
+    return render_to_response("main/language_page.html",
+            locals(),context_instance=RequestContext())
+    
