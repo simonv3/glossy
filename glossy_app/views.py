@@ -21,6 +21,7 @@ def main(request):
             print "searching languages"
             if languageForm.is_valid():
                 lfCD = languageForm.cleaned_data
+                
 
     return render_to_response("main/main_page.html", locals(),context_instance=RequestContext(request))
 
