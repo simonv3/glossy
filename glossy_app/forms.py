@@ -6,3 +6,5 @@ class SearchForm(forms.Form):
     query = forms.CharField(max_length=100)
     language = forms.ChoiceField(choices=languageDict)
 
+class LanguageForm(forms.Form):
+    language_query = forms.CharField(max_length=100)
