@@ -19,11 +19,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-<<<<<<< HEAD
 
-    
-    )
-=======
     url(r'^language/?P<name>\w+/$',language),
 )
->>>>>>> 6546d8b5bac9da1f5ee9f9c186c98ed63b613f75
+
