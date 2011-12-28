@@ -3,6 +3,21 @@
 body{
     background:#eee;
     font-family:Georgia,serif;
+
+background-image: linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
+background-image: -o-linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
+background-image: -moz-linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
+background-image: -webkit-linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
+background-image: -ms-linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
+background-repeat:no-repeat;
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(1, rgb(140,140,140)),
+	color-stop(0.5, #eee)
+);
+    
 }
 
 h1{
@@ -27,23 +42,37 @@ ul.languages li{
     background:#F2B090;
     margin:12px;
     padding:12px;
-    box-shadow:1px 1px 10px #aaa;
+    box-radius:6px;
+    border-shadow:1px 1px 10px #aaa;
 
 }
+
 
 #header{
-    height:192px;
-    background:#EBA066;
-    
+    height:200px;
+    background-image:url('/static/images/background-header.png');
+}
+#header img{
+    display:inline-block;
+    vertical-align:top;
 }
 
-
 #meta-menu{
-    padding-top:162px;
+    display:inline-block;
+    width:auto;
     text-align:right;
+}
+
+#menu{
+    display:inline-block;
+    float:right;
+    top:0;
+    padding-bottom:12px;
+
 }
 a{
     color:black;
 }
+
 
 
