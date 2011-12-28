@@ -2,17 +2,42 @@
 <html lang="en">
   <head>
     <title>Healing Words</title>
+    <link rel="stylesheet" href="{{STATIC_URL}}styles/style.css" type="text/css" />
   </head>
   <body>
-    {{STATIC_URL}}    <ul>
-      <li><h2>Language 1<h2>
+    <div id="header">
+      <div class="sevensixeight">
+        <h1>HealingWords</h1><img  src="{{STATIC_URL}}images/logo.png"/>
+        
+        <div id="menu"><form id="search"><input type="text"/><input type="submit"></form> {% include "sub_log_in_out.html" %} <a href="/about/">about</a></div>
+      </div>
+    </div>
+
+    <div id="content" class="sevensixeight">
+      <div style="clear:both;"></div>
+    <ul id="top-languages" class="languages">
+      <li class="language"><h2>Spanish</h2>
           <p class="description">Spoken by the hello kitties ...</p>
           <a class="languagehome" href="">learn more</a>
       </li>
-      <li><h2>Language 2<h2>
+      <li><h2>Kuwoq'</h2>
+          <p class="description">Spoken by the hello doggies ...</p>
+          <a class="languagehome" href="">learn more</a>
+          </li>
+                <li><h2>Language 2</h2>
           <p class="description">Spoken by the hello doggies ...</p>
           <a class="languagehome" href="">learn more</a>
       </li>
+      <li><h2>Language 2</h2>
+          <p class="description">Spoken by the hello doggies ...</p>
+          <a class="languagehome" href="">learn more</a>
+      </li>
+      <li><h2>Language 2</h2>
+          <p class="description">Spoken by the hello doggies ...</p>
+          <a class="languagehome" href="">learn more</a>
+      </li>
+
     </ul>
+  </div>
   </body>
 </html>

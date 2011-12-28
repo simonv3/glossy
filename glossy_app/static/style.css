@@ -1,0 +1,57 @@
+*{margin:0;padding:0;}
+
+body{
+    background:#eee;
+    font-family:Georgia,serif;
+}
+
+h1{
+    font-style:italic;
+    display:none;
+}
+
+.sevensixeight{
+    width:768px;
+    margin:0 auto;
+}
+
+ul{
+    list-style:none;
+}
+
+ul.languages li{
+    width:192px;
+    height:128px;
+    display:inline-block;
+    vertical-align:top;
+    background:#F2B090;
+    margin:12px;
+    padding:12px;
+    box-shadow:1px 1px 10px #aaa;
+
+}
+
+#header{
+    height:192px;
+    background:#EBA066;
+    
+}
+#header img{
+    vertical-align:top;
+    display:inline-block;
+}
+
+#meta-menu{
+    display:inline-block;
+    width:auto;
+    text-align:right;
+}
+
+#menu{
+    display:block;
+}
+a{
+    color:black;
+}
+
+
