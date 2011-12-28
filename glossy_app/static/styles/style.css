@@ -53,26 +53,25 @@ ul.languages li{
     background-image:url('/static/images/background-header.png');
 }
 #header img{
+    margin-top:20px;
     display:inline-block;
     vertical-align:top;
 }
 
-#meta-menu{
-    display:inline-block;
-    width:auto;
-    text-align:right;
-}
 
 #menu{
     display:inline-block;
     float:right;
-    top:0;
-    padding-bottom:12px;
+margin-top:-162px;
+padding-bottom:12px;
 
+}
+#menu form{
+    display:inline-block;
 }
 a{
     color:black;
 }
 
-
-
+#content{
+margin-top:24px;}
