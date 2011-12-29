@@ -4,11 +4,13 @@ from django.template import RequestContext
 
 from glossy_app.dictionaries import *
 from glossy_app.forms import SearchForm, LanguageForm
+from glossy_app.models import Language
 
 def main(request):
     #search_abdv_language('Bali')
     languageForm = LanguageForm(request.POST or None)
     searchForm = SearchForm(request.POST or None)
+    languages = Language.objects.all()
     if request.method == "POST":
         if 'word' in request.POST:
             if searchForm.is_valid():
@@ -25,7 +27,12 @@ def main(request):
 
     return render_to_response("main/main_page.html", locals(),context_instance=RequestContext(request))
 
-def language(request, languagename):
+def splash(request):
+    languages = Language.objects.all()
+    return render_to_response("glossy_index.html", locals(),
+            context_instance=RequestContext(request))
+
+def language(request):
     return render_to_response("main/language_page.html",
             locals(),context_instance=RequestContext())
     

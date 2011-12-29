@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     ('^$', main),
-    (r'^glossy/$', direct_to_template, {'template': 'glossy_index.html'}),
+    (r'^glossy/$', splash),
     (r'^glossy/home', direct_to_template, {'template': 'vanlittjan.html'}),
      
     # Examples:
@@ -20,6 +20,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^language/?P<name>\w+/$',language),
+    url(r'^language/(?P<languageid>\w+)/$',language),
 )
 
