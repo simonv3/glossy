@@ -32,7 +32,8 @@ def splash(request):
     return render_to_response("glossy_index.html", locals(),
             context_instance=RequestContext(request))
 
-def language(request):
-    return render_to_response("main/language_page.html",
-            locals(),context_instance=RequestContext())
+def language(request, languageid):
+    language = Language.objects.get(id = languageid)
+    return render_to_response("glossy/language_page.html", locals(),
+            context_instance=RequestContext(request))
     
