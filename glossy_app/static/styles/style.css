@@ -54,24 +54,32 @@ h1{
 
 
 #menu{
-  position:relative;
+  z-index:2;
+  position:absolute;
+  top:0;
+  margin-left:512px;
+
   padding:8px;
-  border-radius:4px;
-  background:#ad571c;
+  border-bottom-left-radius:4px;
+  border-bottom-right-radius:4px;
+  
+  background:rgba(173,78,28,.7);
   border:1px solid #9c450a;
-    display:inline-block;
-    float:right;
-    margin-top:-162px;
-    font-size:.8em;
-    font-family:Helvetica, Arial, sans-serif;}
+  border-top:none;
+  display:inline-block;
+  float:right;
+/*    margin-top:-162px;*/
+  font-size:.8em;
+  font-family:Helvetica, Arial, sans-serif;}
 
 #menu form{
     display:inline-block;
 }
 
 #menu input{
-    font-size:1.2em;
-    padding:2px;margin:2px 0;
+    font-size:1em;
+    padding:3px 2px 3px;
+    margin:2px 0;
     border:1px solid #aaa;
     border-right:none;
     background:#eee;
@@ -79,9 +87,8 @@ h1{
     border-bottom-left-radius:3px;
 }
 #menu input.button{
-    padding:3px 8px;
+    padding:3px 8px 3px;
     margin-right:6px;
-    vertical-align:top;
     font-size:1em;
     border-top-right-radius:3px;
     border-bottom-right-radius:3px;
@@ -112,21 +119,22 @@ a{
 }
 #description{
     padding:2em;
-    margin:2em auto 8em;
+    margin:2em auto 5.5em;
 
 }
 
-#description h2{
+h2{
   font-family:Lucida Grand,sans-serif;
   margin-bottom:1em;
+  text-shadow:1px 1px 2px #fff;
 }
 
-#description p{width:512px;line-height:1.3em;}
+p.index-info{width:512px;line-height:1.3em;margin-bottom:1em;}
 
 
 #content-wrapper{
     border-top:1px solid #ccc;
-  
+    border-bottom:1px solid #ccc;
     background:#fff;
     
 }
@@ -157,11 +165,11 @@ a{
 }
 #content{
     margin-top:;
-    padding:2em 0 4em;
+    padding:2em 0 3em;
 }
 
 #content h2{
-  margin:0 0 1em -1em;
+  margin:.5em 0 1em 0em;
 }
 
 ul{
@@ -173,7 +181,7 @@ ul.languages li{
     height:128px;
     display:inline-block;
     vertical-align:top;
-    background:#F2B090;
+    background:#d0b39d;
     margin:12px;
     padding:12px;
     border-radius:3px;
@@ -181,4 +189,20 @@ ul.languages li{
 
 }
 
+#about{
+  margin:2em auto 3em;
+}
 
+#end-notes-wrapper{
+  background:rgba(173,78,28,.7);
+
+  display:auto;
+  padding:24px;
+  height:1em;
+  border-top:1px solid #868686;
+}
+
+.copyright{
+  font-size:.8em;
+  float:right;
+}
