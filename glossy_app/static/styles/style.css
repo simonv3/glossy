@@ -144,9 +144,12 @@ p.index-info{width:512px;line-height:1.3em;margin-bottom:1em;}
 
 .info-image-wrapper{
   display:inline-block;
-  margin:0 36px;
-  
 }
+
+.info-image-wrapper.middle{
+  margin:0 118px;
+}
+
 .info-image{
   display:block;
   width:168px;
