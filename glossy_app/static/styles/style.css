@@ -42,7 +42,7 @@ h1{
 }
 
 #header.main img{
-  margin-top:0;
+  margin-top:-7px;
   
 }
 
@@ -124,7 +124,7 @@ a{
 }
 
 h2{
-  font-family:Lucida Grand,sans-serif;
+  font-family:Lucida Grande,sans-serif;
   margin-bottom:1em;
   text-shadow:1px 1px 2px #fff;
 }
@@ -144,10 +144,24 @@ p.index-info{width:512px;line-height:1.3em;margin-bottom:1em;}
 
 .info-image-wrapper{
   display:inline-block;
+  vertical-align:top;
 }
 
 .info-image-wrapper.middle{
   margin:0 118px;
+}
+
+.info-image-wrapper h3{
+  font-family:Lucida Grande,Helvetica,sans-serif;
+  font-size:1.2em;
+  margin-bottom:.5em;
+  font-weight:normal;
+  color:#0a7f9c;
+
+}
+
+.info-image-wrapper{
+  font-size:.8em;
 }
 
 .info-image{
@@ -159,6 +173,11 @@ p.index-info{width:512px;line-height:1.3em;margin-bottom:1em;}
   border-radius:168px;
   margin:-72px 0 24px;
   box-shadow:4px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.info-image.globe{
+  background-image:url('/static/images/globe_book.png');
+
 }
 
 .info-image-text{
@@ -208,4 +227,8 @@ ul.languages li{
 .copyright{
   font-size:.8em;
   float:right;
+}
+
+#language{
+  margin-top:3em;
 }

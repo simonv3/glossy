@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 
 <html>
-    <head><title>Healing Words {% block title %}{% endblock %}</title>
+    <head><title>Glossy {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{STATIC_URL}}styles/style.css" type="text/css" />
     
     </head>
     <body>
         <div id="header" class="main">
       <div class="sevensixeight">
-        <h1>HealingWords</h1><img  src="{{STATIC_URL}}images/logo-small.png" width="300"/>
+        <h1>HealingWords</h1><img  src="{{STATIC_URL}}images/logo-small.png" width=""/>
         
         <div id="menu"><form id="search"><input type="text"/><input type="submit" class="button"></form> {% include "sub_log_in_out.html" %} <a href="/about/">about</a></div>
       </div>
     </div>
+    <div class="sevensixeight">
     {% block content %}
 
     {% endblock %}
-    
+  </div>
     </body>
 </html>
