@@ -5,7 +5,7 @@ from datetime import datetime
 # Create your models here.
 
 class Language(models.Model):
-    language = models.CharField('language name', max_length=200)
+    language = models.CharField('language name', max_length=200, unique=True)
     author = models.CharField('author', max_length=200)
     silcode = models.CharField('silcode', max_length=3)
     notes = models.TextField('language notes')
@@ -35,13 +35,13 @@ class Definition(models.Model):
     word = models.ForeignKey(Word, related_name='definition of')
     definition = models.TextField('definition')
     image_url = models.CharField('related image', max_length=200, blank=True)
-    part_of_speech = models.CharField('part of speech', max_length=50)
-    ipa = models.CharField(max_length=200)
+    part_of_speech = models.CharField('part of speech', max_length=50, blank=True)
+    ipa = models.CharField(max_length=200, blank=True)
     example = models.TextField('example usage', blank=True)
-    annotations = models.TextField('grammatical notes')
+    annotations = models.TextField('grammatical notes',)
     sound_file = models.CharField('sound file', max_length=200, blank=True)
     def __unicode__(self):
-        return self.word.word + " definition"
+        return self.word.word + " " + self.definition
     
 
 class Comment(models.Model):

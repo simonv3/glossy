@@ -5,7 +5,9 @@ from django.template import RequestContext
 from glossy_app.dictionaries import *
 from glossy_app.forms import SearchForm, LanguageForm
 from glossy_app.models import Language
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/admin/')
 def main(request):
     #search_abdv_language('Bali')
     languageForm = LanguageForm(request.POST or None)
@@ -23,8 +25,9 @@ def main(request):
             print "searching languages"
             if languageForm.is_valid():
                 lfCD = languageForm.cleaned_data
+                abdv_results = fetch_languages(lfCD['language_query'])
                 
-
+    languageForm = LanguageForm(None)
     return render_to_response("main/main_page.html", locals(),context_instance=RequestContext(request))
 
 def splash(request):
