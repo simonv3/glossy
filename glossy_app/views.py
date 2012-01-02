@@ -8,7 +8,7 @@ from glossy_app.models import Language
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/admin/')
-def main(request):
+def import_austronesian(request):
     #search_abdv_language('Bali')
     languageForm = LanguageForm(request.POST or None)
     searchForm = SearchForm(request.POST or None)
@@ -20,9 +20,7 @@ def main(request):
                 wordsDict = []
                 abdv_results = search_abdv_language(sfCD['language'],sfCD['query'])
                 wordsDict.extend(abdv_results)
-                print wordsDict
         elif 'language' in request.POST:
-            print "searching languages"
             if languageForm.is_valid():
                 lfCD = languageForm.cleaned_data
                 abdv_results = fetch_languages(lfCD['language_query'])
@@ -31,12 +29,14 @@ def main(request):
     return render_to_response("main/main_page.html", locals(),context_instance=RequestContext(request))
 
 def splash(request):
-    languages = Language.objects.all()
+    languages = Language.objects.all().order_by('id').reverse()
     return render_to_response("glossy_index.html", locals(),
             context_instance=RequestContext(request))
 
 def language(request, languageid):
     language = Language.objects.get(id = languageid)
+    words = Definition.objects.filter(word__language=language).order_by('definition').extra(select={'lower_name': 'lower(definition)'}).order_by('lower_name')
+    
     return render_to_response("glossy/language_page.html", locals(),
             context_instance=RequestContext(request))
     

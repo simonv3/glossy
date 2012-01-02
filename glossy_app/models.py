@@ -21,7 +21,7 @@ class Language_version(models.Model):
     date = models.DateTimeField('revised date', default=datetime.now)
     notes = models.TextField('version notes')
     def __unicode__(self):
-        return self.language.language + self.date
+        return self.language.language + str(self.date)
     
 
 class Word(models.Model):

@@ -4,10 +4,10 @@
     <title>Glossy</title>
     <link rel="stylesheet" href="{{STATIC_URL}}styles/style.css" type="text/css" />
   </head>
-  <body>
+  <body class="gradient">
     <div id="header">
       <div class="sevensixeight">
-        <h1>HealingWords</h1><img  src="{{STATIC_URL}}images/logo.png" width="300"/>
+        <h1>HealingWords</h1><a href="/"><img  src="{{STATIC_URL}}images/logo.png" width="300"/></a>
         
         <div id="menu"><form id="search"><input type="text"/><input type="submit" class="button" value="search"></form> {% include "sub_log_in_out.html" %} <a href="#about">about</a></div>
       </div>
@@ -29,7 +29,7 @@
     <div id="content" class="sevensixeight">
       <div style="clear:both;"></div>
       <h2>New Languages</h2>
-      <p class="index-info">We constantly update the languages we have in our databases, so make sure to come back for more. </p>
+      <p class="index-info">We constantly update the languages we have in our databases, so make sure to come back and check for updates. </p>
       
       <ul id="top-languages" class="languages">
         {% for language in languages %}

@@ -6,9 +6,9 @@ from django.views.generic.simple import direct_to_template
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    ('^$', main),
-    (r'^glossy/$', splash),
-    (r'^glossy/home', direct_to_template, {'template': 'vanlittjan.html'}),
+    (r'^import/austronesian/$', import_austronesian),
+    (r'^$', splash),
+    (r'^home', direct_to_template, {'template': 'vanlittjan.html'}),
      
     # Examples:
     # url(r'^$', 'glossy.views.home', name='home'),
@@ -21,5 +21,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^language/(?P<languageid>\w+)/$',language),
+   # all my other url mappings
+   
+   (r'^api/', include('glossy_app.api.urls')),
+    
 )
 

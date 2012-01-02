@@ -4,5 +4,14 @@
 {% block content %}
 <div id="language">
   <h2>{{language.language}}</h2>
+  <div id="language_description">
+    {{language.notes}}
+    <span class="resources">{{language.resource}}</span>
+  </div>
+  <ul>
+    {% for definition in words %}
+    <li><em>{{definition.definition}}</em> - {{definition.word.word}}</li>
+    {% endfor %}
+  </ul>
 </div>
 {% endblock %}
