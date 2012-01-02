@@ -21,9 +21,14 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^language/(?P<languageid>\w+)/$',language),
-   # all my other url mappings
+    # all my other url mappings
+    (r'^accounts/profile/$', profile),
+    (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name':
+        'glossy/login.html'}),
+    (r'^accounts/logout/$', 'django.contrib.auth.views.logout',
+    {'next_page':'/'}),
+    (r'^api/', include('glossy_app.api.urls')),
    
-   (r'^api/', include('glossy_app.api.urls')),
     
 )
 

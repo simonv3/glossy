@@ -5,7 +5,8 @@ from django.template import RequestContext
 from glossy_app.dictionaries import *
 from glossy_app.forms import SearchForm, LanguageForm
 from glossy_app.models import Language
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import user_passes_test, login_required
 
 @user_passes_test(lambda u: u.has_perm('glossy_app.can_add_language'), login_url='/admin/')
 def import_austronesian(request):
@@ -38,5 +39,12 @@ def language(request, languageid):
     words = Definition.objects.filter(word__language=language).order_by('definition').extra(select={'lower_name': 'lower(definition)'}).order_by('lower_name')
     
     return render_to_response("glossy/language_page.html", locals(),
+            context_instance=RequestContext(request))
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    user = request.user
+    print user.first_name
+    return render_to_response('glossy/profile.html', locals(),
             context_instance=RequestContext(request))
     

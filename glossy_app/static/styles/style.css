@@ -42,7 +42,7 @@ h1{
 #header.main{
   height:72px;
   background-image:url('/static/images/background-header-small.png');
-  
+  margin-bottom:24px;
 }
 
 #header.main img{
@@ -51,7 +51,7 @@ h1{
 }
 
 #header img{
-    margin-top:20px;
+    margin-top:10px;
     display:inline-block;
     vertical-align:top;
     float:left;
@@ -232,7 +232,6 @@ ul.languages li{
 }
 
 #language{
-  margin-top:3em;
 }
 
 #language #language_description{

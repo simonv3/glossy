@@ -1,3 +1,10 @@
+{% if user.is_authenticated %}
 
+Hi <a href="/accounts/profile">Simon</a>! <a href="/accounts/logout/">log out</a>
 
-<a href="/admin/">log in</a>
+{% else %}
+
+<a href="/accounts/login/">log in</a>
+
+{% endif %}
+    
