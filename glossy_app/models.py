@@ -47,10 +47,19 @@ class Definition(models.Model):
 class Comment(models.Model):
     word = models.ForeignKey(Word, related_name='comment on')
     author = models.CharField('author of comment', max_length=200)
+    author_id = models.IntegerField('only if author logged in')
     date = models.DateTimeField('published time', default=datetime.now)
     comment = models.TextField('actual comment')
     approved = models.BooleanField('has been approved',default=False)
     def __unicode__(self):
         return "comment on " + self.word + " by " + self.author
     
-
+class Language_Discussion(models.Model):
+    language = models.ForeignKey(Language, related_name="comment on")
+    author = models.CharField('author of comment', max_length=200)
+    author_id = models.IntegerField('only if author logged in')
+    date = models.DateTimeField('published time', default=datetime.now)
+    comment = models.TextField('actual comment')
+    approved = models.BooleanField('has been approved', default=False)
+    def __unicode__(self):
+        return "comment on " + self.language + " by " + self.author

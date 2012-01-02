@@ -8,10 +8,13 @@
     {{language.notes}}
     <span class="resources">{{language.resource}}</span>
   </div>
-  <ul>
+  <ul id="words">
     {% for definition in words %}
     <li><em>{{definition.definition}}</em> - {{definition.word.word}}</li>
     {% endfor %}
+  </ul>
+  <ul id="comments">
+
   </ul>
 </div>
 {% endblock %}
