@@ -5,9 +5,9 @@ from django.template import RequestContext
 from glossy_app.dictionaries import *
 from glossy_app.forms import SearchForm, LanguageForm
 from glossy_app.models import Language
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 
-@login_required(login_url='/admin/')
+@user_passes_test(lambda u: u.has_perm('glossy_app.can_add_language'), login_url='/admin/')
 def import_austronesian(request):
     #search_abdv_language('Bali')
     languageForm = LanguageForm(request.POST or None)
