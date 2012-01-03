@@ -8,10 +8,18 @@
     {{language.notes}}
     <span class="resources">{{language.resource}}</span>
   </div>
-  <div id="comment-count"><a href="#comments">{{comments|length}} comment{% if comments|length > 1 %}s{% endif %}</a></div>
+  {% if user.is_superuser %}
+  <a id="edit-language" href="{% url admin:index: %}">Edit Language</a>
+  {% endif %}
+  <div id="comment-count"><a href="#comments">{{comments|length}} comment{% if comments|length > 1 %}s{% endif %}{% if comments|length = 0 %}s{% endif %}</a></div>
+  <div id="words-sort">Sort by: <a href="{% url glossy_app.views.language language.id %}">{{language.language}}</a>, <a href="{% url glossy_app.views.language language.id "english" %}">English</a></div>
   <ul id="words">
     {% for definition in words %}
-    <li><em>{{definition.definition}}</em> - {{definition.word.word}}</li>
+    {% if order == "english" %}
+    <li><em>{{definition.definition}}</em> - <a href="{% url glossy_app.views.word definition.word.id %}" title="{{definition.definition}}">{{definition.word.word}}</a></li>
+    {% else %}
+    <li><em><a href="{% url glossy_app.views.word definition.word.id %}" title="{{definition.definition}}">{{definition.word.word}}</a></em> - {{definition.definition}}</li>
+    {% endif %}
     {% endfor %}
   </ul>
   <ul id="comments">

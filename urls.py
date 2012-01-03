@@ -20,7 +20,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 
+    url(r'^language/(?P<languageid>\w+)/(?P<order>\w+)/$',language),
     url(r'^language/(?P<languageid>\w+)/$',language),
+    url(r'^word/(?P<wordid>\w+)/$', word),
     # all my other url mappings
     (r'^accounts/profile/$', profile),
     (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name':

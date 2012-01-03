@@ -34,11 +34,13 @@ def splash(request):
     return render_to_response("glossy_index.html", locals(),
             context_instance=RequestContext(request))
 
-def language(request, languageid):
+def language(request, languageid, order=""):
     language = Language.objects.get(id = languageid)
-    words = Definition.objects.filter(word__language=language).order_by('definition').extra(select={'lower_name': 'lower(definition)'}).order_by('lower_name')
+    words = Definition.objects.filter(word__language=language).order_by('word').extra(select={'lower_name': 'lower(word)'}).order_by('lower_name')
+    if order=="english":
+        words = words.extra(select={'lower_name': 'lower(definition)'}).order_by('lower_name')
     comments = Comment.objects.filter(language=language).order_by('date')
-    languageCommentForm = LanguageCommentForm(request.POST or None)    
+    languageCommentForm = LanguageCommentForm(request.POST or None)
     if request.method=="POST":
         print languageCommentForm
         if languageCommentForm.is_valid():
@@ -53,6 +55,19 @@ def language(request, languageid):
             comment.save()
     return render_to_response("glossy/language_page.html", locals(),
             context_instance=RequestContext(request))
+
+    
+def word(request, wordid):
+    current_word = Definition.objects.get(word = wordid)
+    same_language = Definition.objects.filter(definition =
+            current_word.definition).filter(word__language=current_word.word.language).exclude(word__word
+                    = current_word.word.word)
+    different_languages = Definition.objects.filter(definition =
+            current_word.definition).exclude(word__language=current_word.word.language)
+
+    return render_to_response("glossy/word_page.html", locals(),
+            context_instance=RequestContext(request))
+
 
 @login_required(login_url='/accounts/login/')
 def profile(request):

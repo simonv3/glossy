@@ -1,0 +1,20 @@
+{% extends "glossy/base.html" %}
+
+{% block content %}
+<h2>{{current_word.word.word}} - <span class="definition">{{current_word.definition}}</span></h2>
+<h3><a href="{% url glossy_app.views.language current_word.word.language.id %}">{{current_word.word.language}}</a></h3>
+Similar words in same language:
+<div id="same-language">
+    {% for word in same_language%}
+        {{word.word}}
+    {% endfor %}
+</div>
+<div id="different-languages">
+    Words that mean <em>{{current_word.definition}}</em> in similar languages:
+<ul>
+{% for word in different_languages %}
+<li><em><a href="{% url glossy_app.views.word word.word.id %}">{{word.word}}</a></em> - <a href="{% url glossy_app.views.language word.word.language.id %}">{{word.word.language}}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}
