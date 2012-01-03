@@ -8,3 +8,10 @@ class SearchForm(forms.Form):
 
 class LanguageForm(forms.Form):
     language_query = forms.CharField(max_length=100)
+
+class LanguageCommentForm(forms.Form):
+    author_name = forms.CharField(max_length=200)
+    author_email = forms.EmailField(max_length=200)
+    author_id = forms.IntegerField()
+    comment = forms.CharField(widget=forms.Textarea)
+

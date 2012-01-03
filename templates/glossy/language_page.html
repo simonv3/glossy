@@ -8,13 +8,38 @@
     {{language.notes}}
     <span class="resources">{{language.resource}}</span>
   </div>
+  <div id="comment-count"><a href="#comments">{{comments|length}} comment{% if comments|length > 1 %}s{% endif %}</a></div>
   <ul id="words">
     {% for definition in words %}
     <li><em>{{definition.definition}}</em> - {{definition.word.word}}</li>
     {% endfor %}
   </ul>
   <ul id="comments">
+    <form id="comment-form" method="post">
+      {% csrf_token %}
+      <div class="your-name">      
+      {% if user.is_authenticated %}
+        Comment as <a href="{% url glossy_app.views.profile %}">{{user.username}}</a>
+        <input type="hidden" value="{{user.username}}" name="author_name"/>
+        <input type="hidden" value="{{user.email}}" name="author_email"/>
+        {% else %}
+        <p>Please fill in some details before posting</p>
+        {{ form.author_email.errors }}
+        <span class="label">Name:</span><input type="text" name="author_name"/>
+        <span class="label">E-mail:</span><input type="text" name="author_email"/>
+        <input type="hidden" value="0" name="author_id"/>
 
+      {% endif %}
+      </div>
+      <textarea name="comment"></textarea>
+      <input type="submit" value="search"/>
+    </form>
+    {% for comment in comments %}
+    <li>
+    <div id="author">{{comment.author}} says:</div>
+    {{comment.comment}} 
+    </li>
+    {% endfor %}
   </ul>
 </div>
 {% endblock %}

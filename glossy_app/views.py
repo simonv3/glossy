@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from glossy_app.dictionaries import *
-from glossy_app.forms import SearchForm, LanguageForm
+from glossy_app.forms import SearchForm, LanguageForm, LanguageCommentForm
 from glossy_app.models import Language
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test, login_required
@@ -37,7 +37,20 @@ def splash(request):
 def language(request, languageid):
     language = Language.objects.get(id = languageid)
     words = Definition.objects.filter(word__language=language).order_by('definition').extra(select={'lower_name': 'lower(definition)'}).order_by('lower_name')
-    
+    comments = Comment.objects.filter(language=language).order_by('date')
+    languageCommentForm = LanguageCommentForm(request.POST or None)    
+    if request.method=="POST":
+        print languageCommentForm
+        if languageCommentForm.is_valid():
+            lcfCD = languageCommentForm.cleaned_data
+            comment = Comment(
+                    language = language,
+                    author=lcfCD['author_name'],
+                    comment = lcfCD['comment'],
+                    approved = True,
+                    source_type = 2,
+                    )
+            comment.save()
     return render_to_response("glossy/language_page.html", locals(),
             context_instance=RequestContext(request))
 
@@ -45,6 +58,7 @@ def language(request, languageid):
 def profile(request):
     user = request.user
     print user.first_name
-    return render_to_response('glossy/profile.html', locals(),
-            context_instance=RequestContext(request))
-    
+    return render_to_response('glossy/profile.html', locals(), context_instance=RequestContext(request))
+
+
+

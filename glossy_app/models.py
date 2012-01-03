@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 from datetime import datetime
 
@@ -45,21 +46,19 @@ class Definition(models.Model):
     
 
 class Comment(models.Model):
-    word = models.ForeignKey(Word, related_name='comment on')
+    word = models.ForeignKey(Word, related_name='comment on word',
+            default=None, null=True, blank=True)
+    language = models.ForeignKey(Language, related_name='comment on language',
+            blank=True)
+    source_type = models.IntegerField('1 = language, 2 = word')
     author = models.CharField('author of comment', max_length=200)
-    author_id = models.IntegerField('only if author logged in')
+    author_id = models.ForeignKey(User, related_name='only if author logged in', blank=True, default=None, null=True)
     date = models.DateTimeField('published time', default=datetime.now)
     comment = models.TextField('actual comment')
     approved = models.BooleanField('has been approved',default=False)
     def __unicode__(self):
-        return "comment on " + self.word + " by " + self.author
+        if self.word:
+            return "comment on " + self.word.word + " by " + self.author
+        elif self.language:
+            return "comment on " + self.language.language + " by " + self.author
     
-class Language_Discussion(models.Model):
-    language = models.ForeignKey(Language, related_name="comment on")
-    author = models.CharField('author of comment', max_length=200)
-    author_id = models.IntegerField('only if author logged in')
-    date = models.DateTimeField('published time', default=datetime.now)
-    comment = models.TextField('actual comment')
-    approved = models.BooleanField('has been approved', default=False)
-    def __unicode__(self):
-        return "comment on " + self.language + " by " + self.author
