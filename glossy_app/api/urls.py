@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from piston.resource import Resource
-from glossy.glossy_app.api.handlers import LanguageHandler
+from glossy_app.api.handlers import LanguageHandler
 
 language_handler = Resource(LanguageHandler)
 

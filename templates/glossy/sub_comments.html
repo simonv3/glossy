@@ -1,0 +1,32 @@
+<div class="white-bar"></div>
+  <ol id="comments">
+    <h3> Comments </h3>
+    <form id="comment-form" method="post">
+      {% csrf_token %}
+      <div class="your-name">      
+      {% if user.is_authenticated %}
+      Comment as <a href="{% url glossy_app.views.profile %}">{{user.username}}</a> <span class="log-out">(<a href="/accounts/logout/">log out</a>)</span>:
+        <input type="hidden" value="{{user.username}}" name="author_name"/>
+        <input type="hidden" value="{{user.email}}" name="author_email"/>
+        {% else %}
+        <p>Please fill in some details before posting:</p>
+        {{ form.author_email.errors }}
+        <span class="label">Name: </span><input type="text" name="author_name"/>
+        <span class="label">E-mail: </span><input type="text" name="author_email"/>
+        <input type="hidden" value="0" name="author_id"/>
+
+      {% endif %}
+      </div>
+      <textarea name="comment"></textarea>
+      <input type="submit" value="submit" class="submit-comment"/>
+    </form>
+    {% if comments|length > 0 %}<h4>Previous comments:</h4>{% endif %}
+    {% for comment in comments %}
+    <li class="{% cycle 'odd' 'even' %}">
+        <div class="author-block"><span class="author">{{comment.author}}</span> <span class="date">{{comment.date|timesince}} ago</span></div>
+        <p><span class="quotes">&ldquo;</span>{{comment.comment}} </p>
+    
+    </li>
+    {% endfor %}
+  </ol>
+
