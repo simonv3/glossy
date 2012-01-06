@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from glossy_app.dictionaries import *
-from glossy_app.forms import SearchForm, LanguageForm, LanguageCommentForm
+from glossy_app.forms import SearchForm, LanguageForm, CommentForm
 from glossy_app.models import Language
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import user_passes_test, login_required
@@ -30,7 +30,7 @@ def import_austronesian(request):
     return render_to_response("main/main_page.html", locals(),context_instance=RequestContext(request))
 
 def splash(request):
-    languages = Language.objects.all().order_by('id').reverse()
+    languages = Language.objects.all().order_by('id').reverse()[:6]
     return render_to_response("glossy_index.html", locals(),
             context_instance=RequestContext(request))
 
@@ -40,7 +40,7 @@ def language(request, languageid, order=""):
     if order=="english":
         words = words.extra(select={'lower_name': 'lower(definition)'}).order_by('lower_name')
     comments = Comment.objects.filter(language=language).order_by('date')
-    languageCommentForm = LanguageCommentForm(request.POST or None)
+    languageCommentForm = CommentForm(request.POST or None)
     if request.method=="POST":
         print languageCommentForm
         if languageCommentForm.is_valid():
@@ -64,6 +64,21 @@ def word(request, wordid):
                     = current_word.word.word)
     different_languages = Definition.objects.filter(definition =
             current_word.definition).exclude(word__language=current_word.word.language)
+
+    comments = Comment.objects.filter(word=current_word).order_by('date')
+    wordCommentForm = CommentForm(request.POST or None)
+    if request.method=="POST":
+        print wordCommentForm
+        if wordCommentForm.is_valid():
+            wcfCD = wordCommentForm.cleaned_data
+            comment = Comment(
+                    word = current_word,
+                    author=wcfCD['author_name'],
+                    comment = wcfCD['comment'],
+                    approved = True,
+                    source_type = 1,
+                    )
+            comment.save()
 
     return render_to_response("glossy/word_page.html", locals(),
             context_instance=RequestContext(request))

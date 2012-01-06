@@ -1,6 +1,6 @@
 *{margin:0;padding:0;}
 
-body.gradient{
+.gradient{
     background-image: linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
     background-image: -o-linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
     background-image: -moz-linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
@@ -37,11 +37,11 @@ h1{
 
 #header{
     height:200px;
-    background-image:url('/static/images/background-header.png');
+    background-image:url('../images/background-header.png');
 }
 #header.main{
   height:72px;
-  background-image:url('/static/images/background-header-small.png');
+  background-image:url('../images/background-header-small.png');
   margin-bottom:24px;
 }
 
@@ -88,7 +88,9 @@ h1{
     border-top-left-radius:3px;
     border-bottom-left-radius:3px;
 }
-#menu input.button{
+
+
+#menu input.button, .submit-comment{
     padding:3px 8px 3px;
     margin-right:6px;
     font-size:1em;
@@ -171,14 +173,14 @@ p.index-info{width:512px;line-height:1.3em;margin-bottom:1em;}
   width:168px;
   height:168px;
   border:3px solid #d0b39d;
-  background-image:url('/static/images/old_books.png');
+  background-image:url('../images/old_books.png');
   border-radius:168px;
   margin:-72px 0 24px;
   box-shadow:4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .info-image.globe{
-  background-image:url('/static/images/globe_book.png');
+  background-image:url('../images/globe_book.png');
 
 }
 
@@ -231,6 +233,15 @@ ul.languages li{
   float:right;
 }
 
+.white-bar{
+  height:.9em;
+  display:block;
+  margin-top:20px;
+  background:white;
+  margin:2em 0 .5em;
+  padding:.5em 0;
+}
+
 #language{
 }
 
@@ -238,10 +249,117 @@ ul.languages li{
   margin:1em 0;
 }
 
-#language ul li{
-  
+#language ol#words, #word ol.words{
+  column-count:3;
+  -moz-column-count:3;
+  -webkit-column-count:3;/* create a javascript fix for this */
+  margin-top:12px;
+  list-style:none;
 }
 
-#language ul li em{
+#language ol li{
+  padding:6px 0;
+}
+
+#language ol li em, #word ol li em{
   font-weight:bold;
 }
+
+#language #language-description{
+  margin-bottom:3em;
+}
+
+#language p{
+  margin:1em 0;
+  width:512px;
+}
+
+#language #edit-language{ float:right; font-size:.9em; font-family:Lucida Grande, sans-serif; clear:both;}
+
+
+#language #words-sort{
+  background:white;
+  font-size:.9em;
+  font-family:Lucida Grande, sans-serif;
+  padding:6px;
+  margin-top:20px;
+  display:block;
+}
+
+#language #words-sort .selected{
+  font-weight:bold;
+}
+#word h2{margin-bottom:0px;}
+#word h3{margin-bottom:1.75em;font-size:1.25em;font-weight:normal;}
+/********* COMMENTS ********/
+
+#comments{
+  margin:2em 0 98px;
+  width:512px;
+
+}
+
+#comments p{
+  margin:.2em 0;
+}
+
+#comments h3{ margin: 1em 0; }
+
+#comment-form{
+
+  margin-bottom:48px;
+}
+
+#comment-form .log-out{
+  font-size:.6em;
+  font-style:italic;
+
+}
+
+#comment-form input{
+  border: 1px solid #ddd;
+  margin:.5em 0;
+  padding:.2em 0;
+  width:198px;
+  font-size:1em;
+}
+
+#comment-form input.submit-comment{
+  padding:.3em .5em;
+  width:auto;
+  float:right;
+  border-radius:3px;
+}
+
+#comment-form textarea{
+  width:510px;
+  border:1px solid #ddd;
+  margin:.5em 0;
+  height:8em;
+  display:block;
+}
+
+#language #comment-count{ float:right; padding:6px; font-size:.9em;margin-top:0;}
+
+ol#comments{
+  list-style:none;
+}
+
+ol#comments h4{ margin-bottom:.75em; }
+
+ol#comments li.even{background:#fafafa;}
+
+ol#comments li{
+  background:#f5f5f5;
+  padding:6px;
+}
+
+ol#comments li .author{ font-weight:bold; }
+
+ol#comments li p{
+  margin:6px;
+}
+
+ol#comments .quotes{ font-family:"Georgia", serif; font-size:1.75em; margin-right:6px;}
+
+ol#comments li .date{ font-size: .75em; font-style:italic; }

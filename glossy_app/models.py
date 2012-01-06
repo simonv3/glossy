@@ -53,11 +53,11 @@ class Definition(models.Model):
     
 
 class Comment(models.Model):
-    word = models.ForeignKey(Word, related_name='comment on word',
+    word = models.ForeignKey(Definition, related_name='comment on word',
             default=None, null=True, blank=True)
     language = models.ForeignKey(Language, related_name='comment on language',
-            blank=True)
-    source_type = models.IntegerField('1 = language, 2 = word')
+            blank=True, null=True, default=None)
+    source_type = models.IntegerField('2 = language, 1 = word')
     author = models.CharField('author of comment', max_length=200)
     author_id = models.ForeignKey(User, related_name='only if author logged in', blank=True, default=None, null=True)
     date = models.DateTimeField('published time', default=datetime.now)

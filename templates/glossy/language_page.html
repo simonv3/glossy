@@ -1,19 +1,22 @@
 {% extends "glossy/base.html" %}
+{% load markup %}
 
 {% block title %} - {{language.language}}{% endblock %}
 {% block content %}
 <div id="language">
   <h2>{{language.language}}</h2>
-  <div id="language_description">
-    {{language.notes}}
+  <div id="language-description">
+    {{language.notes|markdown}}
     <span class="resources">{{language.resource}}</span>
   </div>
   {% if user.is_superuser %}
-  <a id="edit-language" href="{% url admin:index: %}">Edit Language</a>
+  <a id="edit-language" href="/admin/glossy_app/language/{{language.id}}" title="for now just links to admin panel">Edit Language(to be completed)</a><div style="clear:both;"></div>
   {% endif %}
   <div id="comment-count"><a href="#comments">{{comments|length}} comment{% if comments|length > 1 %}s{% endif %}{% if comments|length = 0 %}s{% endif %}</a></div>
-  <div id="words-sort">Sort by: <a href="{% url glossy_app.views.language language.id %}">{{language.language}}</a>, <a href="{% url glossy_app.views.language language.id "english" %}">English</a></div>
-  <ul id="words">
+  
+  <div id="words-sort">Sort by: <a class="{% if order == "" %}selected{% endif %}" href="{% url glossy_app.views.language language.id %}">{{language.language}}</a>, <a class="{% if order == "english" %}selected{% endif %}" href="{% url glossy_app.views.language language.id "english" %}">English</a></div>
+  
+  <ol id="words">
     {% for definition in words %}
     {% if order == "english" %}
     <li><em>{{definition.definition}}</em> - <a href="{% url glossy_app.views.word definition.word.id %}" title="{{definition.definition}}">{{definition.word.word}}</a></li>
@@ -21,33 +24,8 @@
     <li><em><a href="{% url glossy_app.views.word definition.word.id %}" title="{{definition.definition}}">{{definition.word.word}}</a></em> - {{definition.definition}}</li>
     {% endif %}
     {% endfor %}
-  </ul>
-  <ul id="comments">
-    <form id="comment-form" method="post">
-      {% csrf_token %}
-      <div class="your-name">      
-      {% if user.is_authenticated %}
-        Comment as <a href="{% url glossy_app.views.profile %}">{{user.username}}</a>
-        <input type="hidden" value="{{user.username}}" name="author_name"/>
-        <input type="hidden" value="{{user.email}}" name="author_email"/>
-        {% else %}
-        <p>Please fill in some details before posting</p>
-        {{ form.author_email.errors }}
-        <span class="label">Name:</span><input type="text" name="author_name"/>
-        <span class="label">E-mail:</span><input type="text" name="author_email"/>
-        <input type="hidden" value="0" name="author_id"/>
+  </ol>
 
-      {% endif %}
-      </div>
-      <textarea name="comment"></textarea>
-      <input type="submit" value="search"/>
-    </form>
-    {% for comment in comments %}
-    <li>
-    <div id="author">{{comment.author}} says:</div>
-    {{comment.comment}} 
-    </li>
-    {% endfor %}
-  </ul>
-</div>
+    {% include "glossy/sub_comments.html" %}
+  </div>
 {% endblock %}
