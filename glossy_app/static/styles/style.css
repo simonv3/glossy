@@ -1,5 +1,7 @@
 *{margin:0;padding:0;}
 
+img{border:none;}
+
 .gradient{
     background-image: linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
     background-image: -o-linear-gradient(bottom, rgb(140,140,140) 100%, #eee 50%);
@@ -64,7 +66,7 @@ h1{
   padding:8px;
   border-bottom-left-radius:4px;
   border-bottom-right-radius:4px;
-  
+  background:rgb(173,78,28,.7);
   background:rgba(173,78,28,.7);
   border:1px solid #9c450a;
   border-top:none;
