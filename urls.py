@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^language/(?P<languageid>\w+)/$',language),
     url(r'^word/(?P<wordid>\w+)/$', word),
     # all my other url mappings
+    (r'^accounts/register/$', register),
     (r'^accounts/profile/$', profile),
     (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name':
         'glossy/login.html'}),

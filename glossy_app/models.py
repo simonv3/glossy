@@ -65,15 +65,17 @@ class Comment(models.Model):
     approved = models.BooleanField('has been approved',default=False)
     def __unicode__(self):
         if self.word:
-            return "comment on " + self.word.word + " by " + self.author
+            return "comment on " + self.word.word.word + " by " + self.author
         elif self.language:
-            return "comment on " + self.language.language + " by " + self.author
+            return "comment on " + self.language.language.language + " by " + self.author
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='extra')
-    mother_tongue = models.ForeignKey(Language, related_name='mother_tongue')
-    owned_language = models.ManyToManyField(Language, related_name='language_owned')
+    mother_tongue = models.ForeignKey(Language, related_name='mother_tongue',
+            blank=True)
+    owned_language = models.ManyToManyField(Language,
+            related_name='language_owned', blank=True)
 
 # attaches the user profile to the user
 def create_user_profile(sender, instance, created, **kwargs):
